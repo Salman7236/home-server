@@ -1,0 +1,199 @@
+---
+services:
+  plex:
+    image: ghcr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    devices:
+      - /dev/dri:/dev/dri
+    #ports:
+      #- 32400:32400
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Karachi
+      - VERSION=docker
+      - ADVERTISE_IP=http://192.168.0.100/32400/
+      - PLEX_CLAIM=claim-WYG6-poMyZizDFKJNox7 #optional
+    volumes:
+      - /docker/plex/config:/config
+      - /data/pool/media/tv:/tv
+      - /data/pool/media/movies:/movies
+      - /data/pool/media/music:/music
+      - /data/pool/media/family-photos:/family-photos
+      - /data/pool/media/family-videos:/family-videos
+      - /data/pool/media/other-videos:/other-videos
+      - /tmp/plex:/transcode
+    restart: unless-stopped
+
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Karachi
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /docker/radarr/config:/config
+      - /data/pool:/data
+
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Karachi
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /docker/sonarr/config:/config
+      - /data/pool:/data
+
+  prowlarr:
+    container_name: prowlarr
+    image: ghcr.io/hotio/prowlarr:latest
+    ports:
+      - "9696:9696"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Asia/Karachi
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /docker/prowlarr/config:/config
+    restart: unless-stopped
+
+  flaresolverr:
+    # DockerHub mirror flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+      - TZ=Asia/Karachi
+      - PUID=1000
+      - PGID=1000
+      - /docker/flaresolverr/config/:/config
+    ports:
+      - "${PORT:-8191}:8191"
+    restart: unless-stopped
+
+  diun:
+    image: crazymax/diun:latest
+    container_name: diun
+    command: serve
+    environment:
+      - TZ=Asia/Karachi
+      - DIUN_WATCH_WORKERS=20
+      - DIUN_WATCH_SCHEDULE=@every 6h
+      - DIUN_WATCH_JITTER=30s
+      - DIUN_PROVIDERS_DOCKER=true
+      - DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT=true
+      - LOG_LEVEL=info
+      - LOG_JSON=false
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /docker/diun/data:/data
+    labels:
+      - diun.enable=true
+    restart: unless-stopped
+
+  # profilarr:
+  #   image: santiagosayshey/profilarr:latest # Use :beta for early access to new features
+  #   container_name: profilarr
+  #   ports:
+  #     - 6868:6868
+  #   volumes:
+  #     - /docker/profilarr/config:/config # Replace with your actual path
+  #   environment:
+  #     - TZ=Asia/Karachi # Set your timezone
+  #   restart: unless-stopped
+
+  tautulli:
+    container_name: tautulli
+    image: ghcr.io/hotio/tautulli
+    ports:
+      - "8181:8181"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Asia/Karachi
+      - WEBUI_PORTS=8181/tcp,8181/udp
+    volumes:
+      - /docker/tautulli/config:/config
+    restart: unless-stopped
+
+  cross-seed:
+    image: ghcr.io/cross-seed/cross-seed:6
+    container_name: cross-seed
+    user: 1000:1000 
+    ports:
+      - "2468:2468"
+    volumes:
+      - /docker/cross-seed/config:/config
+      - /data/pool/torrents:/data/pool/torrents
+    command: daemon
+    restart: unless-stopped
+
+  qui:
+    image: ghcr.io/autobrr/qui:latest
+    container_name: qui
+    restart: unless-stopped
+    ports:
+      - "7476:7476"
+    volumes:
+      - /docker/qui/config/:/config
+
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr:latest
+    container_name: recyclarr
+    user: 1000:1000
+    restart: unless-stopped
+    volumes:
+      - /docker/recyclarr/config/:/config
+    environment:
+      - TZ=Asia/Karachi
+      - CRON_SCHEDULE=@daily
+      - RECYCLARR_CREATE_CONFIG=true
+
+  copyparty:
+    image: copyparty/ac:latest
+    container_name: copyparty
+    user: "1000:1000"
+    ports:
+      - 3923:3923
+    volumes:
+      - /docker/copyparty/config/:/cfg
+      - /data/pool/:/w
+
+    environment:
+      LD_PRELOAD: /usr/lib/libmimalloc-secure.so.NOPE
+      # enable mimalloc by replacing "NOPE" with "2" for a nice speed-boost (will use twice as much ram)
+
+      PYTHONUNBUFFERED: 1
+      # ensures log-messages are not delayed (but can reduce speed a tiny bit)
+
+    stop_grace_period: 15s  # thumbnailer is allowed to continue finishing up for 10s after the shutdown signal
+    healthcheck:
+      # hide it from logs with "/._" so it matches the default --lf-url filter 
+      test: ["CMD-SHELL", "wget --spider -q 127.0.0.1:3923/?reset=/._"]
+      interval: 1m
+      timeout: 2s
+      retries: 5
+      start_period: 15s

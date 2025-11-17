@@ -12,7 +12,7 @@ alias hc='nvim ~/.config/hypr/hyprland.conf'
 alias kc='nvim ~/.config/kitty/kitty.conf'
 alias ilua='nvim ~/.config/nvim/init.lua'
 alias wilua='v /Windows/Users/muham/AppData/Local/nvim/init.lua'
-alias dc='nvim /docker/docker-compose.yml'
+alias dc='nvim /home/salman/.config/docker/docker-compose.yml'
 alias mpvconf='v ~/.config/mpv/mpv.conf'
 
 # dotfiles workflow #
@@ -44,6 +44,8 @@ alias docker-update='sudo docker-compose -f ~/.config/docker/docker-compose.yml 
 alias docker-up='sudo docker-compose -f ~/.config/docker/docker-compose.yml up -d'
 alias docker-down='sudo docker-compose -f ~/.config/docker/docker-compose.yml down'
 alias dl='sudo docker-compose -f ~/.config/docker/docker-compose.yml logs'
+alias ctop='sudo ctop'
+alias lazydocker='sudo lazydocker'
 ###################
 
 ### Directories ###

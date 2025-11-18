@@ -28,4 +28,4 @@ function y() {
   rm -f -- "$tmp"
 }
 
-. /usr/share/nvm/init-nvm.sh
+eval "$(fnm env --use-on-cd --shell bash)"

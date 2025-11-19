@@ -37,6 +37,7 @@ alias zp="zen-browser --private-window"
 alias snap='sudo timeshift --create --comments'
 alias shh='systemctl sleep'
 alias rs='rsync -chavzP --stats'
+alias reset-network='sudo systemctl restart NetworkManager && sudo systemctl restart systemd-resolved'
 ##############
 
 ### Docker ###
@@ -46,6 +47,7 @@ alias docker-down='sudo docker-compose -f ~/.config/docker/docker-compose.yml do
 alias dl='sudo docker-compose -f ~/.config/docker/docker-compose.yml logs'
 alias ctop='sudo ctop'
 alias lazydocker='sudo lazydocker'
+alias dexec='sudo docker-compose -f ~/.config/docker/docker-compose.yml exec'
 ###################
 
 ### Directories ###

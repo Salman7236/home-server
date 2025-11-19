@@ -1,1 +1,48 @@
-/etc/fstab
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/         	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/home     	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@home	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/log  	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@log	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/spool	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@spool	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/tmp  	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@tmp	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/lib/machines	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@machines	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/lib/docker	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@docker	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/docker	btrfs	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@docker-configs	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/lib/libvirt/images	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@images	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/cache	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@cache	0 0
+
+# /dev/nvme0n1p2 LABEL=ROOT
+UUID=3f40d3bd-a5e7-4ba0-8056-b4e8cb65f0f3	/var/crash	btrfs     	rw,noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=/@crash	0 0
+
+# /dev/nvme0n1p1 LABEL=EFI
+UUID=BD8B-3E8A      	/efi      	vfat      	rw,noatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/sda1 LABEL=WD1TB
+UUID=cec73665-ab07-46fc-be9d-7f87705a4a3f	/data/1TB 	ext4      	rw,relatime	0 2
+
+# /dev/sdb1 LABEL=WD320GB
+UUID=acc6a305-b111-4468-a83c-1e8e688b8f27	/data/320GB	ext4      	rw,relatime	0 2
+
+# MergerFS Pool - combining /dev/sda1(WD1TB) and /dev/sdb1(WD320GB) drives
+/data/1TB:/data/320GB /data/pool fuse.mergerfs defaults,nonempty,allow_other,use_ino,cache.files=partial,dropcacheonclose=true,category.create=mfs,moveonenospc=true,minfreespace=10G,fsname=mergerfs 0 0

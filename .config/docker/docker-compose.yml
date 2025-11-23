@@ -169,7 +169,6 @@ services:
     environment:
       - TZ=Asia/Karachi
       - CRON_SCHEDULE=@daily
-      - RECYCLARR_CREATE_CONFIG=true
 
   copyparty:
     image: copyparty/ac:latest

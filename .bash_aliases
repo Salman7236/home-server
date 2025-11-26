@@ -38,6 +38,7 @@ alias snap='sudo timeshift --create --comments'
 alias shh='systemctl sleep'
 alias rs='rsync -chavzP --stats'
 alias reset-network='sudo systemctl restart NetworkManager && sudo systemctl restart systemd-resolved'
+alias e='exit'
 ##############
 
 ### Docker ###

@@ -35,7 +35,7 @@ alias ssh256='TERM=xterm-256color ssh'
 alias inspiron='ssh salman@192.168.0.101'
 alias zp="zen-browser --private-window"
 alias snap='sudo timeshift --create --comments'
-alias shh='systemctl sleep'
+# alias shh='systemctl sleep'
 alias rs='rsync -chavzP --stats'
 alias reset-network='sudo systemctl restart NetworkManager && sudo systemctl restart systemd-resolved'
 alias e='exit'

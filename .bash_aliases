@@ -8,7 +8,6 @@ alias yeet='yay -Rns'
 
 ### configs ###
 alias aliases='nvim ~/.bash_aliases'
-alias hc='nvim ~/.config/hypr/hyprland.conf'
 alias kc='nvim ~/.config/kitty/kitty.conf'
 alias ilua='nvim ~/.config/nvim/init.lua'
 alias wilua='v /Windows/Users/muham/AppData/Local/nvim/init.lua'

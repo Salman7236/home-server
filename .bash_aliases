@@ -19,6 +19,7 @@ alias dots='/usr/bin/git --git-dir=$HOME/dots/ --work-tree=$HOME'
 ###############
 
 ### others ###
+alias sv='sudoedit'
 alias fr='sudo $(history -p !!)'
 alias :q="echo 'You ain'\''t editing a file, nigga.'"
 #alias :wq=':q'

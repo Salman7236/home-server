@@ -49,7 +49,7 @@ alias dl='sudo docker-compose -f ~/.config/docker/docker-compose.yml logs'
 alias ctop='sudo ctop'
 alias lazydocker='sudo lazydocker'
 alias dexec='sudo docker-compose -f ~/.config/docker/docker-compose.yml exec'
-alias sync-recyclarr='dexec recyclarr recyclarr sync radarr && dexec recyclarr recyclarr sync sonarr'
+alias sync-recyclarr='sudo docker-compose -f ~/.config/docker/docker-compose.yml exec recyclarr recyclarr sync'
 ###################
 
 ### Directories ###

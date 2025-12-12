@@ -34,7 +34,7 @@ alias update-grub="sudo grub-mkconfig -o '/boot/grub/grub.cfg'"
 alias ssh256='TERM=xterm-256color ssh'
 alias inspiron='ssh salman@192.168.0.101'
 alias zp="zen-browser --private-window"
-alias snap='sudo timeshift --create --comments'
+# alias snap='sudo timeshift --create --comments'
 # alias shh='systemctl sleep'
 alias rs='rsync -chavzP --stats'
 alias reset-network='sudo systemctl restart NetworkManager && sudo systemctl restart systemd-resolved'
@@ -75,4 +75,12 @@ sudo() {
   else
     command sudo "$@"
   fi
+}
+
+# timeshift
+snap() {
+  local comment="$*"
+  local today
+  today=$(date +%F)
+  sudo timeshift --create --comments "${today}${comment:+_${comment}}"
 }

@@ -6,14 +6,11 @@ services:
     network_mode: host
     devices:
       - /dev/dri:/dev/dri
-    #ports:
-    #- 32400:32400
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Karachi
       - VERSION=docker
-      # - ADVERTISE_IP=http://192.168.0.100/32400/
     volumes:
       - /docker/plex/config:/config
       - /data/pool/media/tv:/tv

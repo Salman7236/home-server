@@ -19,7 +19,7 @@ alias mpvconf='v ~/.config/mpv/mpv.conf'
 alias dots='/usr/bin/git --git-dir=$HOME/dots/ --work-tree=$HOME'
 # alias nun='dots commit -m "nun too much"'
 nun() {
-  dots commit -m "nun too much"
+  dots commit -m "nun too much" && dots push
 }
 alias pkglist='dots add pkglist.txt && dots commit -m "pkglist" && dots push' # alias to add, commit and push pkglist.txt
 ###############
@@ -59,10 +59,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 ##############
 
 ### Docker ###
-alias docker-update='sudo docker-compose -f ~/.config/docker/docker-compose.yml pull'
+alias docker-pull='sudo docker-compose -f ~/.config/docker/docker-compose.yml pull'
 alias docker-up='sudo docker-compose -f ~/.config/docker/docker-compose.yml up -d'
 alias docker-down='sudo docker-compose -f ~/.config/docker/docker-compose.yml down'
 alias docker-restart='sudo docker-compose -f ~/.config/docker/docker-compose.yml restart'
+alias docker-update='sudo docker-compose -f ~/.config/docker/docker-compose.yml pull && sudo docker-compose -f ~/.config/docker/docker-compose.yml up'
 alias dl='sudo docker-compose -f ~/.config/docker/docker-compose.yml logs'
 alias ctop='sudo ctop'
 alias lazydocker='sudo lazydocker'

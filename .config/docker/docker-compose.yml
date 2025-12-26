@@ -20,6 +20,9 @@ services:
     container_name: homepage
     volumes:
       - /docker/homepage/config/:/app/config
+      - /data/1TB:/data/1TB:ro
+      - /data/320GB:/data/320GB:ro
+      - /data/pool:/data/pool:ro
     ports:
       - 3000:3000
     restart: unless-stopped

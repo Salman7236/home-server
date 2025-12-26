@@ -221,3 +221,21 @@ services:
       timeout: 2s
       retries: 5
       start_period: 15s
+
+  qbitmanage:
+    container_name: qbitmanage
+    image: ghcr.io/hotio/qbitmanage
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Asia/Karachi
+      - QBT_WEB_SERVER=true
+      - QBT_PORT=8081
+    volumes:
+      - /docker/qbitmanage/config:/config
+      - /data/pool/torrents:/data
+      - /home/salman/.local/share/qBittorrent/:/qbittorrent:ro
+    ports:
+      - "8081:8081"

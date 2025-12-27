@@ -251,6 +251,7 @@ services:
       - PGID=1000
       - UMASK=002
       - TZ=Asia/Karachi
+      - LOG_LEVEL=debug
     volumes:
       - /docker/seerr/config:/config
     healthcheck:

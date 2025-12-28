@@ -56,6 +56,7 @@ services:
       - ${POOL}/media/family-videos:/family-videos
       - ${POOL}/media/other-videos:/other-videos
       - /tmp/plex:/transcode
+      - /tmp/plex:/tmp
     restart: unless-stopped
 
   radarr:

@@ -164,7 +164,7 @@ services:
     restart: unless-stopped
 
   qui:
-    image: ghcr.io/autobrr/qui:latest
+    image: ghcr.io/hotio/qui
     container_name: qui
     restart: unless-stopped
     ports:

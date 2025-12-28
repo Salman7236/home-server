@@ -1,0 +1,14 @@
+# User / permissions
+PUID=1000
+PGID=1000
+UMASK=002
+
+# Timezone
+TZ=Continent/City
+
+# Host
+HOST=YOUR.SERVER.IP
+
+# Base paths
+DOCKER=/docker/location
+POOL=/storage/pool/location

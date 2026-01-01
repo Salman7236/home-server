@@ -6,7 +6,7 @@ x-common-env: &common-env
   UMASK: ${UMASK}
 
 services:
-  dockerproxy:
+  dockerproxy: # Proxy for docker socket access
     image: ghcr.io/tecnativa/docker-socket-proxy:latest
     container_name: dockerproxy
     environment:
@@ -21,7 +21,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
     restart: unless-stopped
 
-  homepage:
+  homepage: # Self hosted dashboard for home labs
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     volumes:
@@ -38,7 +38,7 @@ services:
     depends_on:
       - dockerproxy # Ensures proxy starts first (optional but helpful)
 
-  plex:
+  plex: # Media Server for Movies & TV
     image: ghcr.io/linuxserver/plex:latest
     container_name: plex
     network_mode: host
@@ -237,3 +237,40 @@ services:
       LOG_LEVEL: debug
     volumes:
       - ${DOCKER}/seerr/config:/config
+
+  your-spotify-server:
+    image: yooooomi/your_spotify_server
+    container_name: your-spotify-server
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    links:
+      - your-spotify-mongo
+    depends_on:
+      - your-spotify-mongo
+    environment:
+      <<: *common-env
+      API_ENDPOINT: http://${HOST}:8082 # This MUST be included as a valid URL in the spotify dashboard (see below)
+      CLIENT_ENDPOINT: http://${HOST}:3001
+      MONGO_ENDPOINT: mongodb://your-spotify-mongo:27017/your_spotify
+      SPOTIFY_PUBLIC: 9beb54c08fa948109462dabedb084b39
+      SPOTIFY_SECRET: bf53f262ddf4430c93cb6e38e03ba760
+      # CORS: "http://192.168.0.100:3001"
+
+  your-spotify-mongo:
+    container_name: your-spotify-mongo
+    image: mongo:6
+    environment:
+      <<: *common-env
+    volumes:
+      - ${DOCKER}/your-spotify/db:/data/db
+
+  your-spotify-web:
+    image: yooooomi/your_spotify_client
+    container_name: your-spotify-web
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      <<: *common-env
+      API_ENDPOINT: http://${HOST}:8082

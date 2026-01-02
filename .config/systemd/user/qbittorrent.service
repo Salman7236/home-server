@@ -1,0 +1,13 @@
+[Unit]
+Description=qBittorrent (waits for real DNS)
+Wants=network-online.target nss-lookup.target
+After=network-online.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c "until getent hosts google.com >/dev/null 2>&1; do sleep 2; done; sleep 5; exec /usr/bin/qbittorrent"
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

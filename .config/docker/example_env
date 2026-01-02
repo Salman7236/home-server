@@ -12,3 +12,7 @@ HOST=YOUR.SERVER.IP
 # Base paths
 DOCKER=/docker/location
 POOL=/storage/pool/location
+
+# Your Spotify
+SPOTIFY_PUBLIC=
+SPOTIFY_SECRET=

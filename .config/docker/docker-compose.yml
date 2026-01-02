@@ -21,6 +21,19 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
     restart: unless-stopped
 
+  # caddy:
+  #   container_name: caddy
+  #   image: ghcr.io/hotio/caddy
+  #   ports:
+  #     - "80:8080"
+  #     - "443:8443"
+  #   environment:
+  #     <<: *common-env
+  #     # CUSTOM_BUILD:
+  #   volumes:
+  #     - /docker/caddy/config:/config
+  #   restart: unless-stopped
+
   homepage: # Self hosted dashboard for home labs
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -85,6 +98,20 @@ services:
       <<: *common-env
     volumes:
       - ${DOCKER}/sonarr/config:/config
+      - ${POOL}:/data
+
+  lidarr:
+    container_name: lidarr
+    image: ghcr.io/hotio/lidarr
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - "8686:8686"
+    environment:
+      <<: *common-env
+    volumes:
+      - ${DOCKER}/lidarr/config:/config
       - ${POOL}:/data
 
   prowlarr:
@@ -250,8 +277,8 @@ services:
   #     - your-spotify-mongo
   #   environment:
   #     <<: *common-env
-  #     API_ENDPOINT: http://${HOST}:8082 # This MUST be included as a valid URL in the spotify dashboard (see below)
-  #     CLIENT_ENDPOINT: http://${HOST}:3001
+  #     API_ENDPOINT: http://127.0.0.1:8082 # This MUST be included as a valid URL in the spotify dashboard (see below)
+  #     CLIENT_ENDPOINT: http://127.0.0.1:3001
   #     MONGO_ENDPOINT: mongodb://your-spotify-mongo:27017/your_spotify
   #     SPOTIFY_PUBLIC: ${SPOTIFY_PUBLIC}
   #     SPOTIFY_SECRET: ${SPOTIFY_SECRET}
@@ -273,4 +300,4 @@ services:
   #     - "3001:3000"
   #   environment:
   #     <<: *common-env
-  #     API_ENDPOINT: http://${HOST}:8082
+  #     API_ENDPOINT: http://127.0.0.1:8082

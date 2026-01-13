@@ -33,6 +33,7 @@ fastfetch
 fd
 flatpak-kcm
 fnm-bin
+ghostmirror
 git
 gnu-free-fonts
 gptfdisk
@@ -158,6 +159,7 @@ tailscale
 terminus-font
 timeshift
 timeshift-systemd-timer
+tree
 tree-sitter-bash
 tree-sitter-cli
 tree-sitter-javascript
@@ -187,3 +189,6 @@ yt-dlp
 zen-browser-bin
 zoxide
 zram-generator
+zsh
+zsh-completions
+zsh-syntax-highlighting

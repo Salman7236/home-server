@@ -282,6 +282,17 @@ services:
     ports:
       - 7474:7474
 
+  thelounge:
+    image: lscr.io/linuxserver/thelounge:latest
+    container_name: thelounge
+    environment:
+      <<: *common-env
+    volumes:
+      - ${DOCKER}/thelounge/config:/config
+    ports:
+      - 9000:9000
+    restart: unless-stopped
+
   # your-spotify-server:
   #   image: yooooomi/your_spotify_server
   #   container_name: your-spotify-server

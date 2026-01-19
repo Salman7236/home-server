@@ -153,6 +153,7 @@ shellcheck
 sof-firmware
 spectacle
 speedtest++
+ssh-audit
 sshfs
 systemsettings
 tailscale

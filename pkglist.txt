@@ -89,6 +89,7 @@ libva-utils
 linux
 linux-firmware
 linux-headers
+lsof
 lua51
 luarocks
 man-db

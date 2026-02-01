@@ -162,6 +162,7 @@ ssh-audit
 sshfs
 systemsettings
 tailscale
+tcpdump
 terminus-font
 timeshift
 timeshift-systemd-timer

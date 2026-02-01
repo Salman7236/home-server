@@ -121,3 +121,7 @@ snap() {
   today=$(date +%F)
   sudo timeshift --create --comments "${today}${comment:+_${comment}}"
 }
+
+mi() {
+  mediainfo "$@" | kitten clipboard
+}

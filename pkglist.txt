@@ -97,6 +97,7 @@ man-pages
 mediainfo
 mediainfo-gui
 mergerfs
+mergerfs-tools-git
 milou
 miniupnpc
 mpv

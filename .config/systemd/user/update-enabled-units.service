@@ -1,0 +1,6 @@
+[Unit]
+Description=Update enabled systemd units list
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'systemctl list-unit-files --state=enabled > ~/.config/systemd/enabled‑units.txt'

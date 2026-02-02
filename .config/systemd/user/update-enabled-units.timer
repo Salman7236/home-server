@@ -1,0 +1,9 @@
+[Unit]
+Description=Run update-enabled-units daily
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

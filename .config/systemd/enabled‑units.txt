@@ -1,0 +1,21 @@
+UNIT FILE                          STATE   PRESET
+avahi-daemon.service               enabled disabled
+docker.service                     enabled disabled
+getty@.service                     enabled enabled
+grub-btrfsd.service                enabled disabled
+NetworkManager-dispatcher.service  enabled disabled
+NetworkManager-wait-online.service enabled disabled
+NetworkManager.service             enabled disabled
+nmb.service                        enabled disabled
+sddm.service                       enabled disabled
+smartd.service                     enabled disabled
+smb.service                        enabled disabled
+sshd.service                       enabled disabled
+systemd-resolved.service           enabled enabled
+tailscaled.service                 enabled disabled
+systemd-userdbd.socket             enabled enabled
+remote-fs.target                   enabled enabled
+fstrim.timer                       enabled disabled
+timeshift-hourly.timer             enabled disabled
+
+18 unit files listed.

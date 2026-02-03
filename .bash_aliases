@@ -12,7 +12,7 @@ alias rc='nvim ~/.bashrc'
 alias kc='nvim ~/.config/kitty/kitty.conf'
 alias ilua='nvim ~/.config/nvim/init.lua'
 alias wilua='v /Windows/Users/muham/AppData/Local/nvim/init.lua'
-alias dc='nvim /home/salman/.config/docker/docker-compose.yml'
+alias dc='nvim ~/.config/docker/docker-compose.yml'
 alias mpvconf='v ~/.config/mpv/mpv.conf'
 
 # dotfiles git workflow #
@@ -27,7 +27,6 @@ alias pkglist='dots add pkglist.txt && dots commit -m "pkglist" && dots push' # 
 ### others ###
 # alias grep='grep --color=auto'
 alias sv='sudoedit'
-# alias grep='rg'
 alias fr='sudo $(history -p !!)'
 alias :q="echo 'You ain'\''t editing a file, nigga.'"
 #alias :wq=':q'
@@ -37,13 +36,10 @@ alias :qa="echo 'Quitting all what? You in Bash.'"
 alias :w="echo 'Write where? There ain'\''t no buffer here.'"
 alias ZZ="echo 'Trying to be slick with ZZ? Nah.'"
 alias vote='aur-auto-vote -n Salman7236'
-#alias v='nvim'
 alias update-grub="sudo grub-mkconfig -o '/boot/grub/grub.cfg'"
 alias ff="fastfetch"
-alias inspiron='ssh salman@inspiron'
-alias s='kitten ssh salman@inspiron'
-# alias snap='sudo timeshift --create --comments'
-# alias shh='systemctl sleep'
+alias inspiron='ssh salman@arch'
+alias s='kitten ssh salman@arch'
 alias rs='rsync -havP --stats'
 alias reset-network='sudo systemctl restart NetworkManager.service systemd-resolved.service'
 alias e='exit'
@@ -56,6 +52,7 @@ alias h="history | grep "
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias rsl='sudo resolvectl status'
 alias reset-qbit='pkill qbittorrent && systemctl --user stop qbittorrent && reset-network && systemctl --user restart qbittorrent'
 ##############
 
@@ -69,7 +66,7 @@ alias dl='sudo docker compose -f ~/.config/docker/docker-compose.yml logs'
 alias ctop='sudo ctop'
 alias lazydocker='sudo lazydocker'
 alias dexec='sudo docker compose -f ~/.config/docker/docker-compose.yml exec'
-alias sync-recyclarr='sudo docker compose -f ~/.config/docker/docker-compose.yml exec recyclarr recyclarr sync'
+alias recyclarr-sync='sudo docker compose -f ~/.config/docker/docker-compose.yml exec recyclarr recyclarr sync'
 alias sysinfo='sudo sysinfo'
 ###################
 
@@ -122,6 +119,6 @@ snap() {
   sudo timeshift --create --comments "${today}${comment:+_${comment}}"
 }
 
-mi() {
+miclip() {
   mediainfo "$@" | kitten clipboard
 }

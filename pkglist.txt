@@ -28,6 +28,7 @@ drkonqi
 dysk
 e2fsprogs
 efibootmgr
+ethtool
 expac
 eza
 fastfetch
@@ -50,6 +51,7 @@ intel-gpu-tools
 intel-media-driver
 intel-media-sdk
 intel-ucode
+iperf3
 jq
 kactivitymanagerd
 kate
@@ -89,6 +91,7 @@ libva-utils
 linux
 linux-firmware
 linux-headers
+lshw
 lsof
 lua51
 luarocks

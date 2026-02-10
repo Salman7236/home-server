@@ -52,14 +52,19 @@ services:
       - dockerproxy # Ensures proxy starts first (optional but helpful)
 
   plex: # Media Server for Movies & TV
-    image: ghcr.io/linuxserver/plex:latest
+    image: ghcr.io/hotio/plex
     container_name: plex
     network_mode: host
+    # ports:
+    #   - "32400:32400"
     devices:
       - /dev/dri:/dev/dri
     environment:
       <<: *common-env
-      VERSION: docker
+      # VERSION: docker
+      PLEX_BETA_INSTALL: false
+      PLEX_PURGE_CODECS: false
+      # PLEX_CLAIM_TOKEN: claim-xwbrGGEgvkh2e5ecArSr
     volumes:
       - ${DOCKER}/plex/config:/config
       - ${POOL}/media/tv:/tv

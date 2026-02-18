@@ -1,0 +1,10 @@
+#!/bin/bash
+
+RED="\e[1;31m"
+RESET="\e[0m"
+
+echo -e "${RED}Pacman:${RESET}"
+checkupdates
+
+echo -e "${RED}AUR:${RESET}"
+yay -Qua

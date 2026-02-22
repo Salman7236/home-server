@@ -34,7 +34,7 @@ eza
 fastfetch
 fd
 flatpak-kcm
-fnm-bin
+fnm
 ghostmirror
 git
 gnu-free-fonts

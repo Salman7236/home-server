@@ -68,7 +68,9 @@ services:
     volumes:
       - ${DOCKER}/plex/config:/config
       - ${POOL}/media/tv:/tv
+      - ${POOL}/media/tv-anime:/tv-anime
       - ${POOL}/media/movies:/movies
+      - ${POOL}/media/movies-anime:/movies-anime
       - ${POOL}/media/music:/music
       - ${POOL}/media/family-photos:/family-photos
       - ${POOL}/media/family-videos:/family-videos
@@ -81,14 +83,24 @@ services:
     container_name: radarr
     image: ghcr.io/hotio/radarr:latest
     restart: unless-stopped
-    logging:
-      driver: json-file
     ports:
       - 7878:7878
     environment:
       <<: *common-env
     volumes:
       - ${DOCKER}/radarr/config:/config
+      - ${POOL}:/data
+
+  radarr-anime:
+    container_name: radarr-anime
+    image: ghcr.io/hotio/radarr:latest
+    restart: unless-stopped
+    ports:
+      - 7888:7878 # Host 7888 -> Container 7878
+    environment:
+      <<: *common-env
+    volumes:
+      - ${DOCKER}/radarr-anime/config:/config
       - ${POOL}:/data
 
   sonarr:
@@ -284,6 +296,7 @@ services:
       <<: *common-env
     volumes:
       - ${DOCKER}/autobrr/config:/config
+      - /data/pool/torrents:/torrents:ro
     ports:
       - 7474:7474
 
@@ -297,6 +310,35 @@ services:
     ports:
       - 9000:9000
     restart: unless-stopped
+
+  # upload-assistant:
+  #   image: ghcr.io/audionut/upload-assistant:latest
+  #   container_name: upload-assistant
+  #   restart: unless-stopped
+  #   command: ["--webui", "0.0.0.0:5000"]
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - UA_BROWSE_ROOTS=/data/torrents,/Upload-Assistant/tmp
+  #     # - SESSION_SECRET_FILE=/Upload-Assistant/data/session_secret
+  #     # - IN_DOCKER=1
+  #     # - UA_WEBUI_CORS_ORIGINS=http://localhost:5000
+  #     # - XDG_CONFIG_HOME=/custom/config/path
+  #   ports:
+  #     - "5000:5000"
+  #   volumes:
+  #     - ${POOL}/torrents:/data/torrents:rw
+  #     - ${DOCKER}/Upload-Assistant/data:/Upload-Assistant/data:rw
+  #     - /home/salman/.local/share/qBittorrent/BT_backup:/torrent_storage_dir:rw
+  #     - ${DOCKER}/Upload-Assistant/tmp:/Upload-Assistant/tmp:rw
+  #     - ${DOCKER}/Upload-Assistant/webui-auth:/root/.config/upload-assistant:rw
+  #   stop_grace_period: 15s
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-sf", "http://localhost:5000/api/health"]
+  #     interval: 30s
+  #     timeout: 5s
+  #     start_period: 10s
+  #     retries: 3
 
   # your-spotify-server:
   #   image: yooooomi/your_spotify_server

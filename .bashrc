@@ -32,9 +32,9 @@ if [ -f /usr/bin/fastfetch ]; then
 fi
 
 # Expand the history size
-export HISTFILESIZE=10000
-export HISTSIZE=500
-export HISTTIMEFORMAT="%F %T" # add timestamp to history
+export HISTFILESIZE=2000000
+export HISTSIZE=100000
+export HISTTIMEFORMAT="%F %T "
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace

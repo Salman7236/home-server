@@ -99,9 +99,13 @@ services:
       - 7888:7878 # Host 7888 -> Container 7878
     environment:
       <<: *common-env
+      TP_HOTIO: true
+      TP_THEME: hotline
+      TP_ADDON: radarr-anime-logo|radarr-anime-favicon
     volumes:
       - ${DOCKER}/radarr-anime/config:/config
       - ${POOL}:/data
+      - /home/salman/repos/theme-park/98-themepark-radarr:/etc/cont-init.d/98-themepark
 
   sonarr:
     container_name: sonarr
@@ -113,9 +117,12 @@ services:
       - 8989:8989
     environment:
       <<: *common-env
+      TP_HOTIO: true
+      TP_THEME: dracula
     volumes:
       - ${DOCKER}/sonarr/config:/config
       - ${POOL}:/data
+      - /home/salman/repos/theme-park/98-themepark-sonarr:/etc/cont-init.d/98-themepark
 
   lidarr:
     container_name: lidarr

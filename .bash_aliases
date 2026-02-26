@@ -45,8 +45,8 @@ alias reset-network='sudo systemctl restart NetworkManager.service systemd-resol
 alias e='exit'
 alias tl='sudo timeshift --list'
 alias cpu='auto-cpufreq --stats'
-alias cp='cp -i'
-alias mv='mv -i'
+alias cpi='cp -i'
+alias mvi='mv -i'
 alias less='less -R'
 # alias h="history | grep "
 # Add an "alert" alias for long running commands.  Use like so:

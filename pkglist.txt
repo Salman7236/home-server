@@ -105,6 +105,7 @@ milou
 miniupnpc
 mpv
 mtools
+ncdu
 neo-matrix
 neovim
 networkmanager

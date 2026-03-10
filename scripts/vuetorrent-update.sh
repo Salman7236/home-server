@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WEBHOOK="https://discord.com/api/webhooks/1480769239723020401/lmFqlNw6zBr3GFUSZYNlhxeMppqUB3RDBP5s4rh4Q9D8-PdecqKrn_LnedOyVPShjT4B"
+source "$HOME/scripts/.env"
 
 output=$(git -C "$HOME/repos/VueTorrent" pull 2>&1)
 status=$?

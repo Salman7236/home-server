@@ -15,12 +15,25 @@ else
   title="VueTorrent Update Failed"
 fi
 
-# Escape output for JSON (newlines -> \n)
-json_output=$(echo "$output" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
+payload=$(python3 -c "
+import json, sys
+output = sys.argv[1]
+title  = sys.argv[2]
+color  = int(sys.argv[3])
+footer = sys.argv[4]
+print(json.dumps({
+    'embeds': [{
+        'title': title,
+        'description': '\`\`\`\n' + output + '\n\`\`\`',
+        'color': color,
+        'footer': {'text': footer}
+    }]
+}))
+" "$output" "$title" "$color" "$host • $ts")
 
 curl -s -X POST \
   -H "Content-Type: application/json" \
-  -d "{\"embeds\":[{\"title\":\"$title\",\"description\":\"\`\`\`\n$output\n\`\`\`\",\"color\":$color,\"footer\":{\"text\":\"$host • $ts\"}}]}" \
+  -d "$payload" \
   "$WEBHOOK"
 
 exit $status

@@ -17,6 +17,7 @@ btop
 btrfs-progs
 ctop
 discover
+diskus
 dkms
 dma
 docker
@@ -25,6 +26,8 @@ dolphin
 dosfstools
 downgrade
 drkonqi
+dua-cli
+dust
 dysk
 e2fsprogs
 efibootmgr
@@ -35,6 +38,7 @@ fastfetch
 fd
 flatpak-kcm
 fnm
+gdu
 ghostmirror
 git
 gnu-free-fonts
@@ -46,6 +50,7 @@ gufw
 gwenview
 hdparm
 imagemagick
+inetutils
 inotify-tools
 intel-gpu-tools
 intel-media-driver

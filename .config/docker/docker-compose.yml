@@ -21,18 +21,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
     restart: unless-stopped
 
-  # caddy:
-  #   container_name: caddy
-  #   image: ghcr.io/hotio/caddy
-  #   ports:
-  #     - "80:8080"
-  #     - "443:8443"
-  #   environment:
-  #     <<: *common-env
-  #     # CUSTOM_BUILD:
-  #   volumes:
-  #     - /docker/caddy/config:/config
-  #   restart: unless-stopped
+  caddy:
+    container_name: caddy
+    image: ghcr.io/hotio/caddy
+    ports:
+      - "80:8080"
+      - "443:8443"
+    environment:
+      <<: *common-env
+      # CUSTOM_BUILD:
+    volumes:
+      - /docker/caddy/config:/config
+    restart: unless-stopped
 
   homepage: # Self hosted dashboard for home labs
     image: ghcr.io/gethomepage/homepage:latest
@@ -54,16 +54,19 @@ services:
   plex: # Media Server for Movies & TV
     image: ghcr.io/hotio/plex
     container_name: plex
-    network_mode: host
-    # ports:
-    #   - "32400:32400"
+    network_mode: bridge
+    ports:
+      - "32400:32400"
     devices:
       - /dev/dri:/dev/dri
     environment:
       <<: *common-env
-      # VERSION: docker
       PLEX_BETA_INSTALL: false
+      PLEX_CLAIM_TOKEN: claim-SqY6DptGhmk_-dgZgoAF
       PLEX_PURGE_CODECS: false
+      PLEX_NO_AUTH_NETWORKS: "192.168.0.0/24"
+      PLEX_ADVERTISE_URL: http://192.168.0.100:32400 # your server's LAN IP
+      WEBUI_PORTS: 32400/tcp
       # PLEX_CLAIM_TOKEN: claim-xwbrGGEgvkh2e5ecArSr
     volumes:
       - ${DOCKER}/plex/config:/config

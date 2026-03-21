@@ -54,7 +54,7 @@ services:
   plex: # Media Server for Movies & TV
     image: ghcr.io/hotio/plex
     container_name: plex
-    network_mode: bridge
+    # network_mode: bridge
     ports:
       - "32400:32400"
     devices:

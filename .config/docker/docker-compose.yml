@@ -47,7 +47,7 @@ services:
     restart: unless-stopped
     environment:
       <<: *common-env
-      HOMEPAGE_ALLOWED_HOSTS: ${HOST}:3000
+      HOMEPAGE_ALLOWED_HOSTS: ${HOST}:3000,homepage.internal
     depends_on:
       - dockerproxy # Ensures proxy starts first (optional but helpful)
 

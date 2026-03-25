@@ -380,8 +380,8 @@ services:
   #     - your-spotify-mongo
   #   environment:
   #     <<: *common-env
-  #     API_ENDPOINT: http://127.0.0.1:8082 # This MUST be included as a valid URL in the spotify dashboard (see below)
-  #     CLIENT_ENDPOINT: http://127.0.0.1:3001
+  #     API_ENDPOINT: https://your-spotify-api.internal
+  #     CLIENT_ENDPOINT: https://your-spotify.internal
   #     MONGO_ENDPOINT: mongodb://your-spotify-mongo:27017/your_spotify
   #     SPOTIFY_PUBLIC: ${SPOTIFY_PUBLIC}
   #     SPOTIFY_SECRET: ${SPOTIFY_SECRET}
@@ -399,8 +399,8 @@ services:
   #   image: yooooomi/your_spotify_client
   #   container_name: your-spotify-web
   #   restart: unless-stopped
-  #   ports:
-  #     - "3001:3000"
   #   environment:
   #     <<: *common-env
-  #     API_ENDPOINT: http://127.0.0.1:8082
+  #     API_ENDPOINT: https://your-spotify-api.internal
+  #   ports:
+  #     - "3002:3000" # Map to a free host port

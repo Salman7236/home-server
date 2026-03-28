@@ -14,6 +14,7 @@ alias ilua='nvim ~/.config/nvim/init.lua'
 alias wilua='v /Windows/Users/muham/AppData/Local/nvim/init.lua'
 alias dc='nvim ~/.config/docker/docker-compose.yml'
 alias mpvconf='v ~/.config/mpv/mpv.conf'
+alias caddyfile='v /docker/caddy/config/Caddyfile'
 
 # dotfiles git workflow #
 alias dots='/usr/bin/git --git-dir=$HOME/dots/ --work-tree=$HOME'

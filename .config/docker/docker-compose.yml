@@ -339,6 +339,21 @@ services:
       - 9000:9000
     restart: unless-stopped
 
+  daps:
+    image: ghcr.io/drazzilb08/daps
+    container_name: daps
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      <<: *common-env
+    volumes:
+      - ${DOCKER}/daps/config:/config
+      # - /path/to/kometa/assets:/kometa        # update to your Kometa assets path
+      # - /path/to/posters:/posters              # update to your posters path
+      - ${POOL}/media:/media # maps your existing media pool
+
+
   # upload-assistant:
   #   image: ghcr.io/audionut/upload-assistant:latest
   #   container_name: upload-assistant

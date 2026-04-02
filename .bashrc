@@ -22,7 +22,7 @@ parse_git_branch() {
 PS1='\[\e[36m\]\u\[\e[0m\]@\[\e[35m\]\h\[\e[0m\] \[\e[33m\]\w\[\e[0m\] \[\e[32m\]$(parse_git_branch)\[\e[0m\]\$ '
 
 if [[ -n "$SSH_CONNECTION" ]]; then
-  PS1='\[\e[41;30m\] SERVER \[\e[0m\] \[\e[36m\]\u\[\e[0m\]@\[\e[35m\]\h\[\e[0m\] \[\e[33m\]\w\[\e[0m\] \[\e[32m\]$(parse_git_branch)\[\e[0m\]\$ '
+  PS1='\[\e[41;97m\] SERVER \[\e[0m\] \[\e[36m\]\u\[\e[0m\]@\[\e[35m\]\h\[\e[0m\] \[\e[33m\]\w\[\e[0m\] \[\e[32m\]$(parse_git_branch)\[\e[0m\]\$ '
 fi
 
 if [ -f "$HOME/.bash_aliases" ]; then

@@ -116,6 +116,7 @@ neo-matrix
 neovim
 networkmanager
 ngrep
+nmap
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji

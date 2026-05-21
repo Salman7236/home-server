@@ -207,6 +207,3 @@ yt-dlp
 zen-browser-bin
 zoxide
 zram-generator
-zsh
-zsh-completions
-zsh-syntax-highlighting

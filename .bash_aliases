@@ -10,7 +10,7 @@ alias yeet='yay -Rns'
 alias aliases='nvim ~/.bash_aliases'
 alias rc='nvim ~/.bashrc'
 alias kc='nvim ~/.config/kitty/kitty.conf'
-alias ilua='nvim ~/.config/nvim/init.lua'
+alias nc='nvim ~/.config/nvim/'
 alias wilua='v /Windows/Users/muham/AppData/Local/nvim/init.lua'
 alias dc='nvim ~/.config/docker/docker-compose.yml'
 alias mpvconf='v ~/.config/mpv/mpv.conf'
@@ -20,14 +20,14 @@ alias caddyfile='v /docker/caddy/config/Caddyfile'
 alias dots='/usr/bin/git --git-dir=$HOME/dots/ --work-tree=$HOME'
 # alias nun='dots commit -m "nun too much"'
 nun() {
-  dots commit -m "nun too much" && dots push
+	dots commit -m "nun too much" && dots push
 }
 alias pkglist='dots add pkglist.txt && dots commit -m "pkglist" && dots push' # alias to add, commit and push pkglist.txt
 ###############
 
 ### others ###
 # alias grep='grep --color=auto'
-alias sv='sudoedit'
+alias se='sudoedit'
 alias fr='sudo $(history -p !!)'
 alias :q="echo 'You ain'\''t editing a file, nigga.'"
 #alias :wq=':q'
@@ -41,7 +41,8 @@ alias update-grub="sudo grub-mkconfig -o '/boot/grub/grub.cfg'"
 alias ff="fastfetch"
 alias inspiron='ssh salman@arch'
 alias s='kitten ssh salman@arch'
-alias rs='rsync -havP --stats'
+alias shh='systemctl sleep'
+alias rs='rsync -havP --info=progress2,stats2'
 alias reset-network='sudo systemctl restart NetworkManager.service systemd-resolved.service'
 alias e='exit'
 alias tl='sudo timeshift --list'
@@ -55,6 +56,10 @@ alias less='less -R'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias rsl='sudo resolvectl status'
 alias reset-qbit='pkill qbittorrent && systemctl --user stop qbittorrent && reset-network && systemctl --user restart qbittorrent'
+alias warp-r='warp-cli disconnect && sudo systemctl restart warp-svc.service && sleep 3 && warp-cli connect'
+alias warp-d='warp-cli disconnect'
+alias warp-c='warp-cli connect'
+alias warp-s='warp-cli status'
 ##############
 
 ### Docker ###
@@ -99,31 +104,31 @@ alias l.="eza -a | grep -E '^\.'"
 ### Functions ###
 
 h() {
-  history | rg -i "$@"
+	history | rg -i "$@"
 }
 
 # v = nvim
 v() {
-  nvim "$@"
+	nvim "$@"
 }
 
 sudo() {
-  if [ "$1" = "v" ]; then
-    shift
-    command sudo nvim "$@"
-  else
-    command sudo "$@"
-  fi
+	if [ "$1" = "v" ]; then
+		shift
+		command sudo nvim "$@"
+	else
+		command sudo "$@"
+	fi
 }
 
 # timeshift
 snap() {
-  local comment="$*"
-  local today
-  today=$(date +%F)
-  sudo timeshift --create --comments "${today}${comment:+_${comment}}"
+	local comment="$*"
+	local today
+	today=$(date +%F)
+	sudo timeshift --create --comments "${today}${comment:+_${comment}}"
 }
 
 mi() {
-  mediainfo "$@" | kitten clipboard
+	mediainfo "$@" | kitten clipboard
 }

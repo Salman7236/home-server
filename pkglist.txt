@@ -15,6 +15,7 @@ breeze-gtk
 breeze-plymouth
 btop
 btrfs-progs
+cloudflare-warp-bin
 ctop
 discover
 diskus
@@ -111,6 +112,7 @@ milou
 miniupnpc
 mpv
 mtools
+mtr
 ncdu
 neo-matrix
 neovim
@@ -161,6 +163,7 @@ qbittorrent
 qqc2-breeze-style
 rdfind
 rebuild-detector
+reflector
 rslsync
 s-nail
 samba

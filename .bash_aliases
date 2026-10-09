@@ -20,7 +20,7 @@ alias caddyfile='v /docker/caddy/config/Caddyfile'
 alias dots='/usr/bin/git --git-dir=$HOME/dots/ --work-tree=$HOME'
 # alias nun='dots commit -m "nun too much"'
 nun() {
-	dots commit -m "nun too much" && dots push
+  dots commit -m "nun too much" && dots push
 }
 alias pkglist='dots add pkglist.txt && dots commit -m "pkglist" && dots push' # alias to add, commit and push pkglist.txt
 ###############
@@ -90,45 +90,45 @@ alias .....='cd ../../../..'
 
 # eza ls aliases
 
-alias ls='eza --color=always --group-directories-first --icons'
-alias ll='eza -la --icons --octal-permissions --group-directories-first'
-alias l='eza -blGF --header --git --color=always --group-directories-first --icons'
-alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons'
-alias la='eza --long --all --group --group-directories-first'
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
+# Long views
+alias l='eza -blF --git --header --group-directories-first --icons=auto --color=auto'
+alias ll='eza -la --git --header --octal-permissions --group-directories-first --icons=auto --color=auto'
+alias la='eza -la --git --header --group-directories-first --icons=auto --color=auto'
+alias lm='eza -l --git --header --sort=modified --reverse --group-directories-first --icons=auto --color=auto'
 
-alias lS='eza -1 --color=always --group-directories-first --icons'
-alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
-alias l.="eza -a | grep -E '^\.'"
+# Compact and specialist views
+alias l1='eza --oneline --group-directories-first --icons=auto --color=auto'
+alias lt='eza --tree --level=2 --group-directories-first --icons=auto --color=auto'
+alias l.='eza -a --oneline --color=never | grep -E "^\."'
 
 ### Functions ###
 
 h() {
-	history | rg -i "$@"
+  history | rg -i "$@"
 }
 
 # v = nvim
 v() {
-	nvim "$@"
+  nvim "$@"
 }
 
 sudo() {
-	if [ "$1" = "v" ]; then
-		shift
-		command sudo nvim "$@"
-	else
-		command sudo "$@"
-	fi
+  if [ "$1" = "v" ]; then
+    shift
+    command sudo nvim "$@"
+  else
+    command sudo "$@"
+  fi
 }
 
 # timeshift
 snap() {
-	local comment="$*"
-	local today
-	today=$(date +%F)
-	sudo timeshift --create --comments "${today}${comment:+_${comment}}"
+  local comment="$*"
+  local today
+  today=$(date +%F)
+  sudo timeshift --create --comments "${today}${comment:+_${comment}}"
 }
 
 mi() {
-	mediainfo "$@" | kitten clipboard
+  mediainfo "$@" | kitten clipboard
 }

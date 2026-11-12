@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 #
 # ~/.bashrc
 #
@@ -15,9 +16,16 @@
 # PS1='\[\e[38;5;81m\]\w\[\e[0m\]$(gb="\[\e[38;5;208m\]$(git_branch)\[\e[0m\]"; [[ $gb ]] && echo " $gb") \[\e[38;5;208m\]❯\[\e[0m\] '
 
 # Parse git branch
-parse_git_branch() {
-  git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+# parse_git_branch() {
+#   git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+# }
+
+source /usr/share/git/completion/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM=auto
+
+parse_git_branch() { __git_ps1 "(%s)"; }
 
 PS1='\[\e[36m\]\u\[\e[0m\]@\[\e[35m\]\h\[\e[0m\] \[\e[33m\]\w\[\e[0m\] \[\e[32m\]$(parse_git_branch)\[\e[0m\]\$ '
 

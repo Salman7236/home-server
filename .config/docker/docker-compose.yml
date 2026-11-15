@@ -1,4 +1,3 @@
----
 x-common-env: &common-env
   PUID: ${PUID}
   PGID: ${PGID}
@@ -50,6 +49,22 @@ services:
       HOMEPAGE_ALLOWED_HOSTS: ${HOST}:3000,homepage.internal
     depends_on:
       - dockerproxy # Ensures proxy starts first (optional but helpful)
+
+  qbittorrent:
+    container_name: qbittorrent
+    image: ghcr.io/hotio/qbittorrent:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080/tcp"
+      - "56633:56633/tcp"
+      - "56633:56633/udp"
+    environment:
+      <<: *common-env
+      WEBUI_PORTS: 8080/tcp
+      LIBTORRENT: v2
+    volumes:
+      - ${DOCKER}/qbittorrent:/config
+      - ${POOL}:/data
 
   plex: # Media Server for Movies & TV
     image: ghcr.io/hotio/plex
@@ -351,7 +366,6 @@ services:
       # - /path/to/kometa/assets:/kometa        # update to your Kometa assets path
       # - /path/to/posters:/posters              # update to your posters path
       - ${POOL}/media:/media # maps your existing media pool
-
 
   # upload-assistant:
   #   image: ghcr.io/audionut/upload-assistant:latest

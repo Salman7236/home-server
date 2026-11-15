@@ -246,7 +246,7 @@ services:
       <<: *common-env
     volumes:
       - ${DOCKER}/cross-seed/config:/config
-      - ${POOL}/torrents:/data/pool/torrents
+      - ${POOL}:/data
     command: daemon
     restart: unless-stopped
 
@@ -307,8 +307,8 @@ services:
       QBT_PORT: 8081
     volumes:
       - ${DOCKER}/qbitmanage/config:/config
-      - ${POOL}/torrents:/data
-      - /home/salman/.local/share/qBittorrent/:/qbittorrent:ro
+      - ${POOL}:/data
+      - ${DOCKER}/qbittorrent/data:/qbittorrent/data:ro
     ports:
       - "8081:8081"
 
